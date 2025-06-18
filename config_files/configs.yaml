@@ -1,0 +1,11 @@
+page:
+   "page_title": "Langgraph: Build stateful Agentic AI Graph"
+
+provider_options:
+  "llm_options": "groq"
+
+chat_options:
+  "usecase_options": "Basic Chatbot"
+
+model_options:
+  "Groq_model_options": ["deepseek-r1-distill-llama-70b", "gemma2-9b-it", "llama3-70b-8192"]
