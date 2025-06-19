@@ -1,5 +1,5 @@
 import streamlit as st
-#from langchain_core.messages import AIMessage, HumanMessage, ToolMessage
+from langchain_core.messages import AIMessage, HumanMessage, ToolMessage
 #import json
 
 class DisplayStreamlitResult:
@@ -21,3 +21,20 @@ class DisplayStreamlitResult:
                         st.write(user_message)
                     with st.chat_message("assistant"):
                         st.write(value["messages"].content)
+
+        elif usecase == "Chatbot with web":
+            initial_message = {"messages": [user_message]}
+            res = graph.invoke(initial_message)
+            for msg in res["messages"]:
+                if type(msg) == HumanMessage:
+                    with st.chat_message("user"):
+                        st.write(msg.content)
+                elif type(msg) == ToolMessage:
+                    with st.chat_message("ai"):
+                        st.write("Tool Call Started")
+                        st.write(msg.content)
+                        st.write("Tool Call Ended")
+                elif type(msg) == AIMessage and msg.content:
+                    with st.chat_message("assitant"):
+                        st.write(msg.content)
+                
